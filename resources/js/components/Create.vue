@@ -17,7 +17,7 @@
             </div>
 
             <div class="form-group">
-                <input type="title" ref="title" class="form-control" id="title" placeholder="Enter title" required>
+                <input type="text" ref="title" class="form-control" id="title" placeholder="Enter title" required>
             </div>
 
             <div class="form-group">
@@ -27,6 +27,10 @@
             <div class="custom-file mb-3">
                 <input type="file" ref="image" name="image" class="custom-file-input" id="image" required>
                 <label class="custom-file-label" >Choose file...</label>
+            </div>
+
+            <div class="form-group">
+                <input type="text" ref="white_tags" name="white_tags" class="form-control" id="white_tags" placeholder="Enter some tags" required>
             </div>
 
             <button type="submit" @click.prevent="create" class="btn btn-primary block">
@@ -56,8 +60,11 @@
                 const formData = new FormData();
                 formData.append("title", this.$refs.title.value);
                 formData.append("body", this.$refs.body.value);
-                formData.append("user_id", this.userId);
+                // formData.append("user_id", this.userId);
+                formData.append("user_id", 2);
                 formData.append("image", this.$refs.image.files[0]);
+                formData.append("white_tags", this.$refs.white_tags.value);
+
 
                 axios
                     .post("/api/posts", formData)
@@ -78,6 +85,8 @@
 
                 this.$refs.title.value = "";
                 this.$refs.body.value = "";
+                this.$refs.white_tags.value = "";
+
             }
         }
     };

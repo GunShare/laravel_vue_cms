@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\PostResource;
 use Illuminate\Support\Str;
 
+
 class PostController extends Controller
 {
     public function all()
@@ -56,7 +57,7 @@ class PostController extends Controller
             'body' => 'required',
             'user_id' => 'required',
             'image' => 'required|mimes:jpeg,png,jpg,gif,svg',
-//            'tags' => 'required',
+            'white_tags' => 'required',
         ]);
 
         $post = new Post;
@@ -75,7 +76,9 @@ class PostController extends Controller
         $post->body = $request->body;
 
 //        $tags = explode(", ", $request->tags);
-//        $post->tag($tags);
+
+//        $post->tags = $request->tags;
+        $post->white_tags = $request->white_tags;
 
         $post->save();
 

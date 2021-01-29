@@ -25,8 +25,8 @@
 
 <div id="app">
     <Homepage
-{{--        :user-name='@json(auth()->user()->name)'--}}
-{{--        :user-id='@json(auth()->user()->id)'--}}
+        :user-name='@json(auth()->user()->name)'
+        :user-id='@json(auth()->user()->id)'
     ></Homepage>
 </div>
 <script src="{{ asset('js/app.js') }}"></script>
