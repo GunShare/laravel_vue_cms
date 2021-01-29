@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Resources\PostResource;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -55,13 +56,14 @@ class PostController extends Controller
             'body' => 'required',
             'user_id' => 'required',
             'image' => 'required|mimes:jpeg,png,jpg,gif,svg',
+//            'tags' => 'required',
         ]);
 
         $post = new Post;
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $name = str_slug($request->title).'.'.$image->getClientOriginalExtension();
+            $name = Str::slug($request->title).'.'.$image->getClientOriginalExtension();
             $destinationPath = public_path('/uploads/posts');
             $imagePath = $destinationPath . "/" . $name;
             $image->move($destinationPath, $name);
@@ -71,6 +73,10 @@ class PostController extends Controller
         $post->user_id = $request->user_id;
         $post->title = $request->title;
         $post->body = $request->body;
+
+//        $tags = explode(", ", $request->tags);
+//        $post->tag($tags);
+
         $post->save();
 
         return new PostResource($post);
