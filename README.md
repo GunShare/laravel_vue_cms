@@ -59,7 +59,7 @@ class UserTableSeeder extends Seeder
 - 套件 - 標籤套件: rtconner/laravel-tagging ^4.0
 
 ### 網站架構
-![laravel_vue_cms_網站架構圖](public/images/laravel_vue_cms_網站架構圖.png)
+![laravel_vue_cms_網站架構圖](public/images/laravel_vue_cms.png)
 
 ### 過程中遇到的問題與除錯(debug)
 
