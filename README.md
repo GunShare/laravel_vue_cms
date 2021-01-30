@@ -12,11 +12,43 @@
 - 前台頁面：
     - 供一般使用者身份(user) 讀取此網站上已發布的文章內容。
     - 每篇文章能顯示分類標籤(tag)。
-    - 每篇文章下設「Read More」 按鈕，點擊能讀取該文章相關之更多內容。
 - 使用單頁應用程式 ( Single Page Web Application,SPA )，能快速回應使用者請求：
     - 使用 SPA 能夠在第一次連結網站時，網站內容就已經被下載完成，所有資源不需要重新載入。
     - 使用者不需要重新整理頁面，頁面顯示流暢。在網頁瀏覽器中執行大部分的使用者介面邏輯，並主要使用 web Api 與 web 伺服器通訊。
     - 不同於傳統網頁之處：以前製作網站大多是在點選一個按鈕後，重新載入另外一個頁面，會有多個頁面切換。而 SPA 則是能夠把所有資料都放在同一個頁面，不需要換頁，使用者可以在單一頁面裡瀏覽全部內容。
+
+### 操作說明：
+
+關於使用管理者身份(Admin)，登入後台管理介面，進行文章相關功能操作：
+此專案預設有 ```./database/seeders/UserTableSeeder.php```，user 資料表的資料填充有 2 位使用者--'Samuel Jackson'(一般使用者，user_id = 1)及'White Noise'（管理者，user_id = 2）。
+故於首頁登入(login)時，請嘗試輸入```email = 'cantbackdown86@gmail.com'```，```password = 'white1234'```，便能以管理者身份登入後台管理介面。
+若以```email = 'samueljackson@jackson.com'```，```password = 'samuel1234'```登入，則將被判斷為一般使用者，無法進入後台管理介面，僅能於前台閱讀文章。
+
+```UserTableSeeder```檔案內容節錄如下：
+
+```bash
+<?php
+...
+class UserTableSeeder extends Seeder
+{
+    public function run()
+    {
+        $user = new User;
+        $user->name = 'Samuel Jackson';
+        $user->email = 'samueljackson@jackson.com';
+        $user->password = bcrypt('samuel1234');
+        $user->save();
+        $user->roles()->attach(Role::where('name', 'user')->first());
+
+        $admin = new User;
+        $admin->name = 'White Noise';
+        $admin->email = 'cantbackdown86@gmail.com';
+        $admin->password = bcrypt('white1234');
+        $admin->save();
+        $admin->roles()->attach(Role::where('name', 'admin')->first());
+    }
+}
+```
 
 ### 開發環境
 
