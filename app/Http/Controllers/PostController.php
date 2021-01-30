@@ -17,11 +17,6 @@ class PostController extends Controller
         ]);
     }
 
-    public function single(Post $post)
-    {
-        return view('single', compact('post'));
-    }
-
     /**
      * Display a listing of the resource.
      *

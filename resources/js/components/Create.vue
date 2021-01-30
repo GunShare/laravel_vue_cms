@@ -2,7 +2,7 @@
     <div class="container">
         <form>
             <div :class="['form-group m-1 p-3', (successful ? 'alert-success' : '')]">
-                <span v-if="successful" class="label label-sucess">Published!</span>
+                <span v-if="successful" class="label label-success">Published!</span>
             </div>
             <div :class="['form-group m-1 p-3', error ? 'alert-danger' : '']">
             <span v-if="errors.title" class="label label-danger">
@@ -60,8 +60,7 @@
                 const formData = new FormData();
                 formData.append("title", this.$refs.title.value);
                 formData.append("body", this.$refs.body.value);
-                // formData.append("user_id", this.userId);
-                formData.append("user_id", 2);
+                formData.append("user_id", this.userId);
                 formData.append("image", this.$refs.image.files[0]);
                 formData.append("white_tags", this.$refs.white_tags.value);
 
