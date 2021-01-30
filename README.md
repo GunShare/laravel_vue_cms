@@ -157,8 +157,7 @@ Route::get('/posts/{post}', [PostController::class,'single']);
 
 ### DEMO
 
-- [Demo 影片]()
-(講解流程＋操作)
+- [Demo 影片](https://www.youtube.com/watch?v=QhgHGaMmD1o)
 
 ### Reference:
 - [neoighodaro/laravel-vue-cms tutorial](https://github.com/neoighodaro/laravel-vue-cms)
